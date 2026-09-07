@@ -1,17 +1,12 @@
 import express from 'express';
+import { getAllPosts, getPostById, deletePost } from '../controllers/controller.js';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send('Restituisco la lista dei post');
-});
+router.get('/', getAllPosts);
 
-router.get('/:id', (req, res) => {
-    res.send(`Restituisco il post con id ${req.params.id}`);
-});
+router.get('/:id', getPostById);
 
-router.delete('/:id', (req,res) => {
-    res.send(`Elimino il post con id ${req.params.id}`);
-});
+router.delete('/:id', deletePost);
 
 export default router;
