@@ -1,14 +1,21 @@
 import { posts } from '../data/posts.js';
 
-export const getAllPosts = (req, res) => {
-    const { tag } = req.query;
+export const getAllPosts = (req, res, next) => {
+    try {
+        const { tag } = req.query;
 
-    if (tag) {
-        const filteredposts = posts.filter(post => post.tags.includes(tag));
-        return res.json(filteredposts);
+        if (tag) {
+            const filteredposts = posts.filter(post => post.tags.includes(tag));
+            return res.json(filteredposts);
+        }
+
+        res.json(posts);
+
     }
 
-    res.json(posts);
+    catch (err) {
+        next(err);
+    }
 };
 
 export const getPostById = (req, res) => {
