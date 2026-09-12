@@ -1,6 +1,6 @@
 import { posts } from '../data/posts.js';
 
-export const getAllPosts = (req, res, next) => {
+export const getAllPosts = (req, res) => {
     try {
         const { tag } = req.query;
 
@@ -14,7 +14,7 @@ export const getAllPosts = (req, res, next) => {
     }
 
     catch (err) {
-        next(err);
+        return res.status(404).json({ error: `Non ci sono post da mostrarti` });
     }
 };
 
